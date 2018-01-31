@@ -1,0 +1,25 @@
+app1:
+  image: manzil007/vprofile-app
+  ports:
+    - "8080:8080"
+  links:
+    - vprodb
+  command: /usr/local/tomcat/bin/catalina.sh run
+app2:
+  image: manzil007/vprofile-app
+  ports:
+    - "8081:8080"
+  links:
+    - vprodb
+  command: /usr/local/tomcat/bin/catalina.sh run
+vprodb:
+  image: visualpath/vpromultidb
+  ports:
+    - "3306:3306"
+  environment:
+     MYSQL_ROOT_PASSWORD: vprodbpass
+nginxlb:
+  image: manzil007/ngnxlb
+  ports:
+    - "80:80"
+#  command: /etc/inid.d/nginx start
